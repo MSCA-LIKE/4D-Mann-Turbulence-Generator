@@ -1,2 +1,44 @@
 # 4D-Mann-Turbulence-Generator
 A 4D turbulence simulation tool based on Mann model and the eddy lifetime solution (Ropelewski,Tennekes and Panofsk) Developed within the LIKE (Lidar Knowledge Europe) project, funded by the European Union’s Horizon, 2020 research innovation programme under the Marie-Curie grant agreement No. 858358 Author:  Feng Guo from Flensburg University of Applied Sciences,  Jakob Mann from Technical University of Denmark
+
+<pre>
+The Input parameters (in the example '4Dtest_adjLT.inp' file) are described below:<br />
+4096  -Nx: The number of discrete points in the longitudinal dimention<br />
+32    -Ny: The number of discrete points in the laveral dimention<br />
+32    -Nz: The number of discrete points in the vertical dimention<br />
+16384 -Lx: The total field length in the longitudinal dimention<br />
+128   -Ly: The total field length in the laveral dimention<br />
+128   -Lz: The total field length in the vertical dimention<br />
+3     -Nt: The number of time steps of the 3D velocity field<br />
+0     -t1: The first time of the field<br />
+5     -t2: The second time of the field<br />
+12    -t3: The third time of the field, note the times of the fields should match the number of time steps!<br />
+0.11  -alphaEps: A energy level constant, can be adjust to reach target turbulence intensity<br />
+50    - L: Turbulence length scale related to the size of the eddies that contains most of the energy<br />
+3.2   - Gamma: The anisotropy constant defines the shear distortion effect <br />
+0.025 - DUDz: The mean shear profile                (Gamma/DUDZ/scale = gamma)<br />
+0.5   - scale factor:  A empirical scaling factor   (Gamma/DUDZ/scale = gamma)<br />
+1     - factor1:  for adjusting the slope of the shear related eddy lifetime "tau", the actual slope = -factor1,  for k magnitude approximate 0<br />
+3.5   - factor2:  for adjusting the slope of the evolution related eddy lifetime "tau_e", the actual slope = -2/3*factor2,  for k magnitude approximate inf<br />
+-33682           - A random seed number<br />
+4DTurbBox_adjLT  - The output file name, with an extention of '.mt4d'. <br />
+</pre>
+
+In the output file, the turbulence field is written as binary floating-point numbers ('real*4) in the following order: z->y->x->time->velocity component,  for the z y x dimention, the increasing index means the positive direction and the right hand rule is used for the z y x directions. Note that the turbulence is assumed to propogate towards the positive x direction. It is important to use the turbulence field in correct sqeuence because the uniform-linear wind shear included in Mann model results in eddies first arriving at higher vertical locations and then at lower vertical locations. When being applied to a turbine, the field should be read firstly from the largest x to the smallest x.
+
+For example, the field with '.mt4d' extention can be imported to Matlab by 
+<pre>
+
+fileID         = fopen(['4DTurbBox_adjLT.mt4d']);
+uvw            = fread(fileID,'real*4');
+fclose(fileID);
+
+uvw            = reshape(uvw, [n3 n2 n1 length(t) 3]);  % the dimention and sequnce should be fixed here
+u              = squeeze(uvw(:,:,:,:,1));
+v              = squeeze(uvw(:,:,:,:,2));
+w              = squeeze(uvw(:,:,:,:,3));
+u              = permute(u,[4 1 2 3]);           % time, z, y , x
+v              = permute(v,[4 1 2 3]);           % time, z, y , x
+w              = permute(w,[4 1 2 3]);           % time, z, y , x
+</pre>
+
