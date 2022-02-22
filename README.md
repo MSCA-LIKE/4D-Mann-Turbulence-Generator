@@ -26,9 +26,10 @@ The Input parameters (in the example '4Dtest_adjLT.inp' file) are described belo
 
 # How to run
 Open a command line window, go to the directory where "MannTurb4D_v1.exe" and "4Dtest_Input_v1.inp" exist, then type in "MannTurb4D_v1.exe 4Dtest_Input_v1.inp" and press enter.
-Alternatively, check the Matlab based example code "RunExampleAndVisualize.m" by which it calls the exetuable to generate 4D turbulence, import the results and visualize.
+Alternatively, check the Matlab based example code "RunExampleAndVisualize.m", which calls the exetuable to generate 4D turbulence, import the results and visualize.
 
 
+# Note!
 In the output file, the turbulence field is written as binary floating-point numbers ('real*4) in the following order: z->y->x->time->velocity component,  for the z y x dimention, the increasing index means the positive direction and the right hand rule is used for the z y x directions. Note that the turbulence is assumed to propogate towards the positive x direction. It is important to use the turbulence field in correct sqeuence because the uniform-linear wind shear included in Mann model results in eddies first arriving at higher vertical locations and then at lower vertical locations. When being applied to a turbine, the field should be read firstly from the largest x to the smallest x.
 
 For example, the field with '.mt4d' extention can be imported to Matlab by 
@@ -46,4 +47,10 @@ u              = permute(u,[4 1 2 3]);           % time, z, y , x
 v              = permute(v,[4 1 2 3]);           % time, z, y , x
 w              = permute(w,[4 1 2 3]);           % time, z, y , x
 </pre>
+
+
+## 6 Acknowledgement
+This research has received partial funding from the European Union’s Horizon 2020 research and innovation program under the Marie Skłodowska-Curie Grant Agreement No. 858358 (LIKE—Lidar Knowledge Europe). See https://www.msca-like.eu/ for more details about the LIKE project.
+
+## 8 Citing
 
