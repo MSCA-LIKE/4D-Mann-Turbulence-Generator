@@ -16,12 +16,11 @@ The Input parameters (in the example '4Dtest_adjLT.inp' file) are described belo
 0.11  -alphaEps: A energy level constant, can be adjust to reach target turbulence intensity<br />
 50    - L: Turbulence length scale related to the size of the eddies that contains most of the energy<br />
 3.2   - Gamma: The anisotropy constant defines the shear distortion effect <br />
-0.025 - DUDz: The mean shear profile                (Gamma/DUDZ/scale = gamma)<br />
-0.5   - scale factor:  A empirical scaling factor   (Gamma/DUDZ/scale = gamma)<br />
+400   - gamma: The evolution time constant, can be adjusted to get different longitudinal coherence <br />
 1     - factor1:  for adjusting the slope of the shear related eddy lifetime "tau", the actual slope = -factor1,  for k magnitude approximate 0<br />
 3.5   - factor2:  for adjusting the slope of the evolution related eddy lifetime "tau_e", the actual slope = -2/3*factor2,  for k magnitude approximate inf<br />
 -33682           - A random seed number<br />
-4DTurbBox_adjLT  - The output file name, with an extention of '.mt4d'. <br />
+4DTurbExample.mt4d  - The output file name, with an extention of '.mt4d'. <br />
 </pre>
 
 In the output file, the turbulence field is written as binary floating-point numbers ('real*4) in the following order: z->y->x->time->velocity component,  for the z y x dimention, the increasing index means the positive direction and the right hand rule is used for the z y x directions. Note that the turbulence is assumed to propogate towards the positive x direction. It is important to use the turbulence field in correct sqeuence because the uniform-linear wind shear included in Mann model results in eddies first arriving at higher vertical locations and then at lower vertical locations. When being applied to a turbine, the field should be read firstly from the largest x to the smallest x.
@@ -29,7 +28,7 @@ In the output file, the turbulence field is written as binary floating-point num
 For example, the field with '.mt4d' extention can be imported to Matlab by 
 <pre>
 
-fileID         = fopen(['4DTurbBox_adjLT.mt4d']);
+fileID         = fopen(['4DTurbExample.mt4d']);
 uvw            = fread(fileID,'real*4');
 fclose(fileID);
 
