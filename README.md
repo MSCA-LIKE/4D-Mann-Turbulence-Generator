@@ -25,9 +25,11 @@ The Input parameters (in the example '4Dtest_adjLT.inp' file) are described belo
 </pre>
 
 
-## 2 Input parameters
+## 2 How to run
 Open a command line window, go to the directory where "MannTurb4D_v1.exe" and "4Dtest_Input_v1.inp" exist, then type in "MannTurb4D_v1.exe 4Dtest_Input_v1.inp" and press enter.
-Alternatively, check the Matlab based example code "RunExampleAndVisualize.m", which calls the exetuable to generate 4D turbulence, import the results and visualize.
+Alternatively, check the Matlab based example code "RunExampleAndVisualize.m", which calls the exetuable to generate 4D turbulence, import the results and visualize. Below is the example fields generator by "MannTurb4D_v1.exe", two yz plane turbulence recorded by different time are shown, the turbulence is animated by swaping the x direction. 
+
+![YzTurb_evo](https://user-images.githubusercontent.com/62547702/155133276-a53a4849-34ae-449e-8983-8ba0c06394e9.gif)
 
 
 ## 3 Special Note
