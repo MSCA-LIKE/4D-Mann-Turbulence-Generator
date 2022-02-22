@@ -59,4 +59,5 @@ w              = permute(w,[4 1 2 3]);           % time, z, y , x
 This research has received partial funding from the European Union’s Horizon 2020 research and innovation program under the Marie Skłodowska-Curie Grant Agreement No. 858358 (LIKE—Lidar Knowledge Europe). See https://www.msca-like.eu/ for more details about the LIKE project.
 
 ## 5 Citing
-
+Feng Guo, & Jakob Mann. (2022, Feb 22).  MannTurb4D_v1 (Version v1.0). Zenodo.: Initial release of the 4D Mann Turbulence Generator
+DOI: 10.5281/zenodo.6223785 
