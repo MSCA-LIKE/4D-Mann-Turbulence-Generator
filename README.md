@@ -30,10 +30,10 @@ Open a command line window, go to the directory where "MannTurb4D_v1.exe" and "4
 Alternatively, check the Matlab based example code "RunExampleAndVisualize.m", which calls the exetuable to generate 4D turbulence, import the results and visualize. 
 Below is the example field generator by "MannTurb4D_v1.exe", which can be obtained by running "RunExampleAndVisualize.m".
 ![Field_two_Snapshots](https://user-images.githubusercontent.com/62547702/155133482-eba55353-7113-49ce-a1ce-a088c6949799.png)
-The 3D turbulence field snapshot taken at two different time slot and sliced at the space domain edges. 
+The 3D turbulence fields snapshot taken at two different time slots and sliced at the space domain edges. 
 
 ![YzTurb_evo](https://user-images.githubusercontent.com/62547702/155133276-a53a4849-34ae-449e-8983-8ba0c06394e9.gif)
-Two yz plane turbulence recorded by different time are shown, the turbulence is animated by swaping the x direction. 
+Two yz-plane turbulence fields recorded by different times are shown, the turbulence is animated by swaping in the x direction. 
 
 ## 3 Special Note
 In the output file, the turbulence field is written as binary floating-point numbers ('real*4) in the following order: z->y->x->time->velocity component,  for the z y x dimention, the increasing index means the positive direction and the right hand rule is used for the z y x directions. Note that the turbulence is assumed to propogate towards the positive x direction. It is important to use the turbulence field in correct sqeuence because the uniform-linear wind shear included in Mann model results in eddies first arriving at higher vertical locations and then at lower vertical locations. When being applied to a turbine, the field should be read firstly from the largest x to the smallest x.
